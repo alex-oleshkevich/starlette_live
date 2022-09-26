@@ -1,0 +1,64 @@
+# This workflow will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name: Upload Python Package
+
+on:
+    release:
+        types: [ created ]
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   uses: actions/checkout@v2
+
+            -   name: Set up Python
+                uses: actions/setup-python@v2
+                with:
+                    python-version: '3.x'
+
+            -   uses: actions/setup-node@v2
+                with:
+                    node-version: 18
+                    registry-url: https://registry.npmjs.org/
+
+            -   name: Get yarn cache directory path
+                id: yarn-cache-dir-path
+                run: echo "::set-output name=dir::$(yarn cache dir)"
+
+            -   uses: actions/cache@v2
+                id: yarn-cache
+                with:
+                    path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                    key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                    restore-keys: ${{ runner.os }}-yarn-
+
+            -   name: Install javascript dependencies
+                run: yarn install
+                working-directory: assets
+
+            -   name: Build
+                run: |
+                    yarn build
+                working-directory: assets
+
+            -   name: Install python dependencies
+                run: |
+                    python -m pip install --upgrade pip poetry
+                    poetry config virtualenvs.create false
+                    poetry install --no-interaction
+
+            -   name: Build package
+                run: |
+                    poetry config pypi-token.pypi {{ secrets.PYPI_TOKEN }}
+                    poetry build --publish
+
+            -   name: Archive build artifacts
+                uses: actions/upload-artifact@v3
+                with:
+                    name: package.zip
+                    retention-days: 7
+                    path: |
+                        dist

@@ -3,11 +3,9 @@
         "dev": "esbuild --bundle src/main.ts --watch --bundle --outfile=../starlette_live/statics/live/live.js",
         "build": "esbuild --bundle src/main.ts --minify --sourcemap --outfile=../starlette_live/statics/live/live.js"
     },
-    "dependencies": {
-        "morphdom": "^2.6.1",
-        "reconnecting-websocket": "^4.4.0"
-    },
     "devDependencies": {
+        "morphdom": "^2.6.1",
+        "reconnecting-websocket": "^4.4.0",
         "esbuild": "^0.15.9"
     }
 }
