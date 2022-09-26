@@ -1,22 +1,21 @@
-# OhMyAdmin
+# Live views for Starlette
 
-Awesome admin panel for your business.
 
-![PyPI](https://img.shields.io/pypi/v/ohmyadmin)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alex-oleshkevich/ohmyadmin/Lint%20and%20test)
-![GitHub](https://img.shields.io/github/license/alex-oleshkevich/ohmyadmin)
-![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/pypi/ohmyadmin)
-![PyPI - Downloads](https://img.shields.io/pypi/dm/ohmyadmin)
-![GitHub Release Date](https://img.shields.io/github/release-date/alex-oleshkevich/ohmyadmin)
+![PyPI](https://img.shields.io/pypi/v/starlette_live)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/alex-oleshkevich/starlette_live/Lint%20and%20test)
+![GitHub](https://img.shields.io/github/license/alex-oleshkevich/starlette_live)
+![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/pypi/starlette_live)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/starlette_live)
+![GitHub Release Date](https://img.shields.io/github/release-date/alex-oleshkevich/starlette_live)
 
 ## Installation
 
-Install `ohmyadmin` using PIP or poetry:
+Install `starlette_live` using PIP or poetry:
 
 ```bash
-pip install ohmyadmin
+pip install starlette_live
 # or
-poetry add ohmyadmin
+poetry add starlette_live
 ```
 
 ## Features
