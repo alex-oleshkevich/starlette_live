@@ -1,0 +1,108 @@
+[tool.poetry]
+name = "starlette_live"
+description = "Live views for Starlette."
+version = "0.1.0"
+authors = ["Alex Oleshkevich <alex.oleshkevich@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/alex-oleshkevich/starlette_live"
+repository = "https://github.com/alex-oleshkevich/starlette_live"
+documentation = "https://github.com/alex-oleshkevich/starlette_live"
+keywords = []
+include = ["starlette_live/statics/build/*"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Jinja2 = "^3.1"
+starlette = "^0.20"
+python-multipart = "^0.0.5"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1"
+pytest-asyncio = "^0.19"
+pytest-cov = "^3.0"
+black = "^22.6"
+mypy = "^0.971"
+flake8 = "^5.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ["py310"]
+skip-string-normalization = true
+line_length = 120
+extend-exclude = true
+exclude = '''
+(
+    asv_bench/env
+  | \.egg
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.nox
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | setup.py
+)
+'''
+
+
+[tool.isort]
+combine_as_imports = true
+include_trailing_comma = true
+known_standard_library = "dataclasses,typing_extensions"
+known_first_party = "starlette_live"
+known_third_party = ["pkg_resources"]
+known_future_library = "__future__"
+line_length = 120
+multi_line_output = 3
+profile = "black"
+use_parentheses = true
+
+[tool.coverage.run]
+branch = true
+source = ["starlette_live"]
+omit = ["tests/*", ".venv/*", ".git/*", "*/__main__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError"
+]
+
+[tool.mypy]
+disallow_untyped_defs = true
+ignore_missing_imports = true
+show_error_codes = true
+files = ["starlette_live", "examples", "tests"]
+
+[tool.pytest.ini_options]
+minversion = "7.1"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+norecursedirs = [
+    "node_modules", "frontend", "storage", "dist", ".git",
+    "*/migrations/*", "*/static/*", "docs", ".venv"
+]
+addopts = "--tb=short -s --no-cov-on-fail"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]

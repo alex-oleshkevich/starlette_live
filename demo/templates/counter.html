@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+{% block head %}
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+{% endblock %}
+
+{% block content %}
+    <div live-root>
+        <div>count: {{ count }}</div>
+        <div>
+            <button type="button" live-click="add" live-value-step="2">add</button>
+            <button type="button" live-click="sub" live-value-step="1">sub</button>
+        </div>
+    </div>
+{% endblock %}

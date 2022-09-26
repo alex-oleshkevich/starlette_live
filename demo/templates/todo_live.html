@@ -1,0 +1,80 @@
+<div>
+    <section class="todoapp">
+        {% live_component 'demo.components.EditForm' placeholder="What needs to be done?" %}
+
+        {% if total_tasks %}
+            <section class="main">
+                <input id="toggle-all" class="toggle-all" type="checkbox" data-live-click="toggle_all">
+                <label for="toggle-all">Mark all as complete</label>
+
+                <ul class="todo-list">
+                    {% for task in tasks %}
+                        <li {% if task.completed %}class="completed"{% endif %}>
+                            <div class="view">
+                                <input
+                                        data-live-click="toggle"
+                                        data-live-value-id="{{ loop.index0 }}"
+                                        class="toggle" type="checkbox" {% if task.checked %}checked=""{% endif %}
+                                >
+                                <label>{{ task.text }}</label>
+                                <button
+                                        data-live-click="delete"
+                                        data-live-value-id="{{ loop.index0 }}"
+                                        class="destroy"
+                                >
+
+                                </button>
+                            </div>
+                            <input class="edit" value="asd">
+                        </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <footer class="footer">
+                <span class="todo-count">{{ tasks|length }} tasks</span>
+                <ul class="filters">
+                    <li>
+                        <a
+                                data-live-click="select_filter"
+                                data-live-value-name="all"
+                                {% if selected_filter == 'all' %} class="selected"{% endif %}
+                        >
+                            All
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                                data-live-click="select_filter"
+                                data-live-value-name="active"
+                                {% if selected_filter == 'active' %} class="selected"{% endif %}
+                        >
+                            Active
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                                data-live-click="select_filter"
+                                data-live-value-name="completed"
+                                {% if selected_filter == 'completed' %}class="selected"{% endif %}
+                        >
+                            Completed
+                        </a>
+                    </li>
+                </ul>
+                <button
+                        data-live-click="clear_completed"
+                        class="clear-completed"
+                >
+                    Clear completed
+                </button>
+            </footer>
+        {% endif %}
+    </section>
+    <footer class="info">
+        <p>Double-click to edit a todo</p>
+        <p>Created by <a href="http://twitter.com/oscargodson">Oscar Godson</a></p>
+        <p>Refactored by <a href="https://github.com/cburgmer">Christoph Burgmer</a></p>
+        <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    </footer>
+</div>
