@@ -25,7 +25,7 @@ classifiers = [
 [tool.poetry.dependencies]
 python = "^3.10"
 Jinja2 = "^3.1"
-starlette = "^0.20"
+starlette = ">=0.20,<0.26"
 python-multipart = "^0.0.5"
 
 [tool.poetry.dev-dependencies]
